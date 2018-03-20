@@ -1,49 +1,56 @@
-idnestRepeat  >>> {id, EPSILON,  } 
 fParamsTail  >>> {,,  } 
 sign  >>> {+, -,  } 
-aParams  >>> {not, floatNum, intNum, id, +, -, EPSILON,  } 
+varDeclRepeatStatementRepeat  >>> {id, float, int, EPSILON,  } 
+aParams  >>> {not, floatNum, intNum, (, id, +, -, EPSILON,  } 
 type  >>> {id, float, int,  } 
-arithExpr  >>> {not, floatNum, intNum, id, +, -,  } 
+variableFactorFactor  >>> {., EPSILON,  } 
+arithExpr  >>> {not, floatNum, intNum, (, id, +, -,  } 
+varDeclfuncDecl  >>> {id, float, int, EPSILON,  } 
 relExprMod  >>> {geq, lt, leq, neq, eq, gt, EPSILON,  } 
 idnestRepeatFactor  >>> {., EPSILON,  } 
-idnest  >>> {EPSILON,  } 
 multOp  >>> {and, *, /,  } 
-statementRepeat  >>> {=, EPSILON,  } 
+idnest  >>> {(, EPSILON,  } 
+statementRepeat  >>> {get, for, id, if, put, return, EPSILON,  } 
+variableFactorFactorFactor  >>> {., EPSILON,  } 
 arithExprMod  >>> {or, +, -, EPSILON,  } 
 varDeclRepeat  >>> {id, float, int, EPSILON,  } 
+varDeclPre0  >>> {get, for, [, ;, id, if, put, return, EPSILON,  } 
 funcDefRepeat  >>> {id, float, int, EPSILON,  } 
 aParamsTailRepeat  >>> {,, EPSILON,  } 
 indice  >>> {[,  } 
 classDecl  >>> {class,  } 
 funcDeclRepeat  >>> {id, float, int, EPSILON,  } 
 relOp  >>> {geq, lt, leq, neq, eq, gt,  } 
-funcDecl  >>> {id, float, int,  } 
+funcDecl  >>> {(,  } 
 functionCall  >>> {(,  } 
+typeId  >>> {id, float, int,  } 
 funcBody  >>> {{,  } 
 funcDef  >>> {id, float, int,  } 
 aParamsTail  >>> {,,  } 
 funcHeadOptionFactor  >>> {id,  } 
 assignOp  >>> {=,  } 
+varDeclPre  >>> {(, [, ;,  } 
 funcHeadOption  >>> {EPSILON, sr,  } 
 fParams  >>> {id, float, int, EPSILON,  } 
-statBlock  >>> {=, EPSILON,  } 
+statBlock  >>> {get, for, {, id, if, put, return, EPSILON,  } 
 termMod  >>> {and, *, EPSILON, /,  } 
 fParamsTailRepeat  >>> {,, EPSILON,  } 
 classDeclOption  >>> {:, EPSILON,  } 
-statement  >>> {=, EPSILON,  } 
-expr  >>> {not, floatNum, intNum, id, +, -,  } 
-term  >>> {not, floatNum, intNum, id, +, -,  } 
-relExpr  >>> {not, floatNum, intNum, id, +, -,  } 
-factor  >>> {not, floatNum, intNum, id, +, -,  } 
+statement  >>> {get, for, id, if, put, return,  } 
+expr  >>> {not, floatNum, intNum, (, id, +, -,  } 
+term  >>> {not, floatNum, intNum, (, id, +, -,  } 
+relExpr  >>> {not, floatNum, intNum, (, id, +, -,  } 
+factor  >>> {not, floatNum, intNum, (, id, +, -,  } 
 addOp  >>> {or, +, -,  } 
 arraySizeRepeat  >>> {[, EPSILON,  } 
 arraySize  >>> {[,  } 
 prog  >>> {id, program, float, class, int,  } 
 variableFunctionCallFactor  >>> {id,  } 
+variableFactor  >>> {id,  } 
 variable  >>> {[, EPSILON,  } 
 indiceRepeat  >>> {[, EPSILON,  } 
-classDeclOptionRepeat  >>> {,,  } 
-assignStat  >>> {id, [, =,  } 
-varDecl  >>> {id, float, int,  } 
+classDeclOptionRepeat  >>> {,, EPSILON,  } 
+assignStat  >>> {id,  } 
+varDecl  >>> {[, ;,  } 
 classDeclRepeat  >>> {class, EPSILON,  } 
 funcHead  >>> {id, float, int,  } 
