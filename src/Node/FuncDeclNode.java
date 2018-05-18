@@ -1,7 +1,8 @@
 package Node;
 
+import Lexer.Token;
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class FuncDeclNode extends TreeNode {
     public FuncDeclNode(String token) {
@@ -16,9 +17,7 @@ public class FuncDeclNode extends TreeNode {
         super(token, parent, isEnd);
     }
 
-    public void accept(Visitor visitor){
-        visitor.visit(this);
+    public FuncDeclNode(String prod, Token token, TreeNode parent, Boolean isEnd) {
+        super(prod, token, parent, isEnd);
     }
-
-
 }

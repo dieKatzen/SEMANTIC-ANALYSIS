@@ -1,0 +1,6 @@
+class InheritedUtility {
+ int member1;};
+
+program {
+
+ };

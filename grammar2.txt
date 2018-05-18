@@ -1,0 +1,128 @@
+prog                         -> classDeclRepeat funcDefRepeat program funcBody ;
+classDecl                    -> class id classDeclOption { varDeclfuncDecl } ;
+classDeclRepeat              -> classDecl classDeclRepeat
+classDeclRepeat              -> EPSILON
+classDeclOption              -> : id classDeclOptionRepeat
+classDeclOption              -> EPSILON
+classDeclOptionRepeat        -> , id classDeclOptionRepeat
+classDeclOptionRepeat        -> EPSILON
+funcDefRepeat                -> funcDef funcDefRepeat
+funcDefRepeat                -> EPSILON
+varDeclfuncDecl              -> typeId varDeclPre
+varDeclfuncDecl              -> EPSILON
+varDeclPre                   -> arraySizeRepeat ; varDeclfuncDecl
+varDeclPre                   -> funcDecl
+funcDeclRepeat               -> typeId funcDecl
+funcDeclRepeat               -> EPSILON
+funcDecl                     -> ( fParams ) ; funcDeclRepeat
+varDeclRepeat                -> typeId varDecl
+varDeclRepeat                -> EPSILON
+varDecl                      -> arraySizeRepeat ; varDeclRepeat
+type                         -> float
+type                         -> id
+type                         -> int
+typeId                       -> float id
+typeId                       -> id id
+typeId                       -> int id
+funcHead                     -> type funcHeadOptionFactor ( fParams )
+funcHeadOptionFactor         -> id funcHeadOption
+funcHeadOption               -> sr id
+funcHeadOption               -> EPSILON
+funcDef                      -> funcHead funcBody ;
+funcBody                     -> { varDeclRepeatStatementRepeat }
+varDeclRepeatStatementRepeat -> vadrsType
+varDeclRepeatStatementRepeat -> EPSILON
+vadrsTypeStatement           -> for ( typeId assignOp expr ; relExpr ; assignStat ) statBlock ;
+vadrsTypeStatement           -> if ( expr ) then statBlock else statBlock ;
+vadrsTypeStatement           -> get ( variableFactor ) ;
+vadrsTypeStatement           -> put ( expr ) ;
+vadrsTypeStatement           -> return ( expr ) ;
+vadrsType                    -> float id arraySizeRepeat ; varDeclRepeatStatementRepeat
+vadrsType                    -> int id arraySizeRepeat ; varDeclRepeatStatementRepeat
+vadrsType                    -> id vadrsType0
+vadrsType                    -> vadrsTypeStatement statementRepeat
+vadrsType0                   -> vadrsType01
+vadrsType0                   -> vadrsType02
+vadrsType0                   -> vadrsType03
+vadrsType01                  -> id arraySizeRepeat ; varDeclRepeatStatementRepeat
+vadrsType0Statement          -> vadrsType03
+vadrsType0Statement          -> vadrsType02
+vadrsType02                  -> functionCall . id vadrsType0Statement
+vadrsType03                  -> variable vadrsType0VariableFactor
+vadrsType03                  -> vadrsType0VariableFactor
+vadrsType0VariableFactor     -> . id vadrsType0Statement
+vadrsType0VariableFactor     -> assignOp expr ; statementRepeat
+statementRepeat              -> statement statementRepeat
+statementRepeat              -> EPSILON
+arraySizeRepeat              -> arraySize arraySizeRepeat
+arraySizeRepeat              -> EPSILON
+statement                    -> for ( typeId assignOp expr ; relExpr ; assignStat ) statBlock ;
+statement                    -> if ( expr ) then statBlock else statBlock ;
+statement                    -> get ( variableFactor ) ;
+statement                    -> put ( expr ) ;
+statement                    -> return ( expr ) ;
+statement                    -> assignStat ;
+assignStat                   -> variableFactor assignOp expr
+variableFactor               -> id variableFactorFactor
+variableFactorFactor         -> functionCall . variableFactor
+variableFactorFactor         -> variable variableFactorFactorFactor
+variableFactorFactor         -> EPSILON
+variableFactorFactorFactor   -> . variableFactor
+variableFactorFactorFactor   -> EPSILON
+statBlock                    -> { statementRepeat }
+statBlock                    -> statement
+statBlock                    -> EPSILON
+expr                         -> relExpr
+relExpr                      -> arithExpr relExprMod
+relExprMod                   -> relOp arithExpr
+relExprMod                   -> EPSILON
+arithExpr                    -> term arithExprMod
+arithExprMod                 -> addOp term arithExprMod
+arithExprMod                 -> EPSILON
+sign                         -> +
+sign                         -> -
+term                         -> factor termMod
+termMod                      -> multOp factor termMod
+termMod                      -> EPSILON
+factor                       -> ( arithExpr )
+factor                       -> floatNum
+factor                       -> intNum
+factor                       -> not factor
+factor                       -> variableFunctionCallFactor
+factor                       -> sign factor
+indice                       -> [ arithExpr ]
+arraySize                    -> [ intNum ]
+fParams                      -> typeId arraySizeRepeat fParamsTailRepeat
+fParams                      -> EPSILON
+fParamsTailRepeat            -> fParamsTail fParamsTailRepeat
+fParamsTailRepeat            -> EPSILON
+aParams                      -> expr aParamsTailRepeat
+aParams                      -> EPSILON
+aParamsTailRepeat            -> aParamsTail aParamsTailRepeat
+aParamsTailRepeat            -> EPSILON
+fParamsTail                  -> , typeId arraySizeRepeat
+aParamsTail                  -> , expr
+assignOp                     -> =
+relOp                        -> eq
+relOp                        -> geq
+relOp                        -> gt
+relOp                        -> leq
+relOp                        -> lt
+relOp                        -> neq
+addOp                        -> +
+addOp                        -> -
+addOp                        -> or
+multOp                       -> *
+multOp                       -> /
+multOp                       -> and
+variableFunctionCallFactor   -> id idnest idnestRepeatFactor
+idnestRepeatFactor           -> . variableFunctionCallFactor
+idnestRepeatFactor           -> EPSILON
+indiceRepeat                 -> indice indiceRepeat
+indiceRepeat                 -> EPSILON
+idnest                       -> functionCall
+idnest                       -> variable
+idnest                       -> EPSILON
+variable                     -> indiceRepeat
+variable                     -> EPSILON
+functionCall                 -> ( aParams )

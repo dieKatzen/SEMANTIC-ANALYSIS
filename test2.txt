@@ -1,0 +1,11 @@
+class Auto {
+ int var1;};
+class Bus : Auto {
+
+ float var2; };
+
+ 2.33
+
+program {
+ int sample[100];
+ };

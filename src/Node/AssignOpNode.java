@@ -1,7 +1,7 @@
 package Node;
 
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class AssignOpNode extends TreeNode {
     public AssignOpNode(String token) {
@@ -16,9 +16,7 @@ public class AssignOpNode extends TreeNode {
         super(token, parent, isEnd);
     }
 
-    public void accept(Visitor visitor){
-        visitor.visit(this);
-    }
+
 
 
 }

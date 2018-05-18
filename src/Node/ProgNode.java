@@ -1,7 +1,7 @@
 package Node;
 
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class ProgNode extends TreeNode {
     public ProgNode(String token) {
@@ -16,8 +16,11 @@ public class ProgNode extends TreeNode {
         super(token, parent, isEnd);
     }
 
-    public void accept(Visitor visitor){
+    public void accept(Visitor visitor) {
         visitor.visit(this);
+        if(this.getChildren()!=null) {
+            for (TreeNode child : this.getChildren())
+                child.accept(visitor);
+        }
     }
-
 }

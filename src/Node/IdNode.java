@@ -1,7 +1,8 @@
 package Node;
 
+import Lexer.Token;
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class IdNode extends TreeNode {
     public IdNode(String token) {
@@ -16,8 +17,15 @@ public class IdNode extends TreeNode {
         super(token, parent, isEnd);
     }
 
-    public void accept(Visitor visitor){
+    public void accept(Visitor visitor) {
         visitor.visit(this);
+        if(this.getChildren()!=null) {
+            for (TreeNode child : this.getChildren())
+                child.accept(visitor);
+        }
     }
 
+    public IdNode(String prod, Token token, TreeNode parent, Boolean isEnd) {
+        super(prod, token, parent, isEnd);
+    }
 }

@@ -1,7 +1,7 @@
 package Node;
 
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class RelOpNode extends TreeNode {
     public RelOpNode(String token) {

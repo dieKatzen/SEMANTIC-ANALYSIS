@@ -1,7 +1,8 @@
 package Node;
 
+import Lexer.Token;
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class FParamsNode extends TreeNode {
     public FParamsNode(String token) {
@@ -20,5 +21,7 @@ public class FParamsNode extends TreeNode {
         visitor.visit(this);
     }
 
-
+    public FParamsNode(String prod, Token token, TreeNode parent, Boolean isEnd) {
+        super(prod, token, parent, isEnd);
+    }
 }

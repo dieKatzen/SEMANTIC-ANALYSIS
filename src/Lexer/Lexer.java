@@ -191,11 +191,10 @@ public class Lexer {
     public static String addSpaces(String s){
         s = s + "  ";
         StringBuilder build = new StringBuilder();
-        for (int i = 0; i< s.length() ;i++) {
-            if(i == s.length()-1){
-                return build.toString();
-            }
-            if(singlesHash.contains(s.charAt(i)) && !doublesHash.contains(s.substring(i,i+2))){
+        for (int i = 0; i< s.length()-1 ;i++) {
+            if(s.charAt(i)=='.' && Character.isDigit(s.charAt(i-1)) && Character.isDigit(s.charAt(i+1)) ){
+                build.append(s.substring(i,i+1));
+            }else if(singlesHash.contains(s.charAt(i)) && !doublesHash.contains(s.substring(i,i+2))){
                 build.append(" "+ s.substring(i,i+1)+ " ");
             }else if(doublesHash.contains(s.substring(i,i+2))){
                 build.append(" "+ s.substring(i,i+2)+" ");
@@ -207,15 +206,17 @@ public class Lexer {
         return build.toString();
     };
 
-    public List<Token> returnTokenList( List<Token> returnList){
+    public List<Token> returnTokenList( List<Token> returnList,String fileName){
         Lexer lexer = new Lexer ();
         lexer.transitionTable.loadTransitionTableCSV();
-        String source = lexer.loadTestFile("test.txt");
+        String source = lexer.loadTestFile(fileName);
         source = lexer.addSpaces(source);
         System.out.println("Source: " + source);
         lexer.parse(source);
 
         returnList = addProd(lexer.tokenListReturn);
+        writeToFile("tokenResults.txt",lexer.tokenList,true);
+        writeToFile("errorResults.txt",lexer.errorList);
         return returnList;
 
 

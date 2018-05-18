@@ -1,7 +1,7 @@
 package Node;
 
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class ClassDeclNode extends TreeNode {
     public ClassDeclNode(String token) {
@@ -16,9 +16,13 @@ public class ClassDeclNode extends TreeNode {
         super(token, parent, isEnd);
     }
 
-    public void accept(Visitor visitor){
+
+    public void accept(Visitor visitor) {
+
         visitor.visit(this);
+        if(this.getChildren()!=null) {
+            for (TreeNode child : this.getChildren())
+                child.accept(visitor);
+        }
     }
-
-
 }

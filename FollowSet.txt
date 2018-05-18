@@ -13,17 +13,21 @@ idnest  >>> {or, lt, ), *, +, ,, eq, gt, -, ., /, geq, and, leq, ;, neq, ],  }
 statementRepeat  >>> {},  } 
 variableFactorFactorFactor  >>> {), =,  } 
 arithExprMod  >>> {geq, lt, ), leq, ;, neq, ,, eq, ], gt,  } 
+vadrsType01  >>> {},  } 
+vadrsType02  >>> {},  } 
+vadrsType0VariableFactor  >>> {},  } 
+vadrsType03  >>> {},  } 
 varDeclRepeat  >>> { } 
-varDeclPre0  >>> {},  } 
 funcDefRepeat  >>> {program,  } 
 aParamsTailRepeat  >>> {),  } 
+vadrsType  >>> {},  } 
 indice  >>> {or, lt, ), *, +, ,, eq, gt, -, ., /, geq, and, leq, ;, neq, [, =, ],  } 
 classDecl  >>> {program, id, float, class, int,  } 
 funcDeclRepeat  >>> {},  } 
 relOp  >>> {not, floatNum, intNum, (, id, +, -,  } 
 funcDecl  >>> {},  } 
 functionCall  >>> {or, lt, ), *, +, ,, eq, gt, -, ., /, geq, and, leq, ;, neq, ],  } 
-typeId  >>> {for, (, ), ,, put, get, [, ;, id, }, if, =, return,  } 
+typeId  >>> {(, ), [, ;, ,, =,  } 
 funcBody  >>> {;,  } 
 funcDef  >>> {program, id, float, int,  } 
 aParamsTail  >>> {), ;, ,,  } 
@@ -32,18 +36,21 @@ assignOp  >>> {not, floatNum, intNum, (, id, +, -,  }
 varDeclPre  >>> {},  } 
 funcHeadOption  >>> {(,  } 
 fParams  >>> {),  } 
+vadrsTypeStatement  >>> {else, get, for, id, ;, }, if, put, return,  } 
 statBlock  >>> {else, ;,  } 
 termMod  >>> {or, lt, ), +, ,, eq, gt, -, geq, leq, ;, neq, ],  } 
 fParamsTailRepeat  >>> {),  } 
+vadrsType0Statement  >>> {},  } 
 classDeclOption  >>> {{,  } 
-statement  >>> {else, get, for, id, ;, if, }, put, return,  } 
+statement  >>> {else, get, for, id, ;, }, if, put, return,  } 
 expr  >>> {), ;, ,,  } 
 term  >>> {or, lt, ), +, ,, eq, gt, -, geq, leq, ;, neq, ],  } 
 relExpr  >>> {), ;, ,,  } 
 factor  >>> {or, lt, ), *, +, ,, eq, gt, -, /, geq, and, leq, ;, neq, ],  } 
+vadrsType0  >>> {},  } 
 addOp  >>> {not, floatNum, intNum, (, id, +, -,  } 
 arraySizeRepeat  >>> {), ;, ,,  } 
-arraySize  >>> {for, (, ), ,, put, get, [, ;, id, }, if, =, return,  } 
+arraySize  >>> {(, ), [, ;, ,, =,  } 
 prog  >>> { } 
 variableFunctionCallFactor  >>> {or, lt, ), *, +, ,, eq, gt, -, /, geq, and, leq, ;, neq, ],  } 
 variableFactor  >>> {), =,  } 

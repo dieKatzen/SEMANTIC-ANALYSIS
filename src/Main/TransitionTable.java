@@ -62,9 +62,6 @@ public class TransitionTable {
                 }
             }
 
-            if(index == -1){
-                throw new SymbolNotFoundException();
-            }
 
             for (int i=1;i<transitionTable.size();i++) {
                 if (transitionTable.get(i)[0].equals(currState)) {

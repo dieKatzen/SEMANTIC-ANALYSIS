@@ -1,0 +1,8 @@
+class Whoo {
+};
+
+class BigClass2  {
+};
+program {
+ };
+

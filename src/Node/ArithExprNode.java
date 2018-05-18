@@ -1,7 +1,7 @@
 package Node;
 
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class ArithExprNode extends TreeNode {
     public ArithExprNode(String token) {

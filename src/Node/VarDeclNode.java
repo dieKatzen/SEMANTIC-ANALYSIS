@@ -1,7 +1,8 @@
 package Node;
 
+import Lexer.Token;
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class VarDeclNode extends TreeNode {
     public VarDeclNode(String token) {
@@ -16,8 +17,17 @@ public class VarDeclNode extends TreeNode {
         super(token, parent, isEnd);
     }
 
-    public void accept(Visitor visitor){
+
+    public VarDeclNode(String prod, Token token, TreeNode parent, Boolean isEnd) {
+        super(prod,token, parent, isEnd);
+    }
+
+    public void accept(Visitor visitor) {
         visitor.visit(this);
+        if(this.getChildren()!=null) {
+            for (TreeNode child : this.getChildren())
+                child.accept(visitor);
+        }
     }
 
 }

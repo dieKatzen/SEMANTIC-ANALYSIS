@@ -1,11 +1,16 @@
 package Node;
 
+import Lexer.Token;
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class FuncHeadNode extends TreeNode {
     public FuncHeadNode(String token) {
         super(token);
+    }
+
+    public FuncHeadNode(String prod, Token token, TreeNode parent, Boolean isEnd) {
+        super(prod, token, parent, isEnd);
     }
 
     public FuncHeadNode(String token, Boolean isEnd) {

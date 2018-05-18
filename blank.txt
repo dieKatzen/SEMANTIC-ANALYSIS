@@ -1,0 +1,3 @@
+class id{int id;}; class id:id{float id;};program {int id[intNum];};
+
+class id:id,id{}; program {};

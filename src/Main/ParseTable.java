@@ -411,6 +411,10 @@ public class ParseTable {
     public void initLL1table(){
         Object [] nta = non_terminals.toArray();
         Object [] ta = terminals.toArray();
+        System.out.println("terminals printed");
+        for(Object p: terminals.toArray()) {
+            System.out.println(p.toString() + " ");
+        }
         ll1table = new Productions [nta.length+1] [ta.length+1];
         for(int i=1; i<nta.length+1; i++){
             ll1table[i][0] = new Productions(nta[i-1].toString());
@@ -432,19 +436,60 @@ public class ParseTable {
         for(int i=1; i<non_terminals.toArray().length+1; i++){
             ArrayList <String []> arl = grammarMap.get(ll1table[i][0].labelName);
             Iterator<String []> arli= arl.iterator();
+
+//            insertIntoTable(firstMap.get(ll1table[i][0].labelName),arlia,i);
             while(arli.hasNext()){
                 String [] arlia = arli.next();
+//                if(arlia[0].equals("EPSILON")){
+//                    insertIntoTable(followMapNew.get(ll1table[i][0].labelName),arlia,i);
+//                }else{
+//                    if(terminals.contains(arlia[0])) {
+//                        HashSet <String> hs = new HashSet<String>();
+//                        hs.add(arlia[0]);
+//                        insertIntoTable(hs, arlia, i);
+//                    }else{
+//
+//                        boolean cont = false;
+//                        insertIntoTable(firstMap.get(arlia[0].toString()), arlia, i);
+//                        if(firstMap.get(arlia[0].toString()).contains("EPSILON")){
+//                           cont = true;
+//                        }
+//                        for(int cnt = 1; cnt<arlia.length&&firstMap.get(arlia[cnt-1].toString()).contains("EPSILON");cnt++){
+//                            insertIntoTable(firstMap.get(arlia[cnt].toString()), arlia, i);
+//                        }
+//                    }
+//                };
+                HashSet <String> hs = new HashSet<String>();
                 if(arlia[0].equals("EPSILON")){
-                    insertIntoTable(followMapNew.get(ll1table[i][0].labelName),arlia,i);
+                    hs.addAll(followMapNew.get(ll1table[i][0].labelName));
                 }else{
-                    if(terminals.contains(arlia[0])) {
-                        HashSet <String> hs = new HashSet<String>();
-                        hs.add(arlia[0]);
-                        insertIntoTable(hs, arlia, i);
-                    }else{
-                        insertIntoTable(firstMap.get(arlia[0].toString()), arlia, i);
-                    }
-                };
+                 for(int cnt = 0; cnt<arlia.length;cnt++) {
+                     if (terminals.contains(arlia[cnt])) {
+                         hs.add(arlia[cnt]);
+                         insertIntoTable(hs, arlia, i);
+                         break;
+                     } else {
+                         HashSet<String> hstemp = firstMap.get(arlia[cnt].toString());
+                         hs.addAll(hstemp);
+
+                         //add epsilons backwards
+                         if(cnt >=1){
+                             String [] epsilonarlia = {"EPSILON"};
+                             for(int rev = cnt-1; rev >-1; rev--){
+                                 insertIntoTable(firstMap.get(arlia[cnt].toString()),epsilonarlia, arlia[rev]);
+                             }
+                         }
+                         if (!hstemp.contains("EPSILON")) {
+                             break;
+                         }
+                         if (hstemp.contains("EPSILON") && cnt == (arlia.length - 1)) {
+                             hs.addAll(followMapNew.get(ll1table[i][0].labelName));
+                             break;
+                         }
+                     }
+                 }
+                }
+                insertIntoTable(hs, arlia, i);
             }
         }
     }
@@ -454,6 +499,32 @@ public class ParseTable {
         for(int j = 1; j<length ;j++){
             if(hs.contains(ll1table[0][j].labelName)){
                 ll1table[i][j] = new Productions(arlia);
+//                hs.remove(ll1table[0][j].labelName);
+                if(hs.isEmpty()){
+                    return;
+                }
+            }
+        }
+    }
+
+    public void insertIntoTable(HashSet<String> hs,String[]arlia, String row ){
+
+        int t=-1;
+        for(int i=1; i<non_terminals.toArray().length+1; i++){
+            if(ll1table[i][0].labelName.equals(row)) {
+                t = i;
+                break;
+            }
+        }
+
+        if(t==-1){
+            System.out.println("Wrong!");
+        }
+
+        int length = terminals.toArray().length+1;
+        for(int j = 1; j<length ;j++){
+            if(hs.contains(ll1table[0][j].labelName)){
+                ll1table[t][j] = new Productions(arlia);
 //                hs.remove(ll1table[0][j].labelName);
                 if(hs.isEmpty()){
                     return;
@@ -595,6 +666,8 @@ public class ParseTable {
                 String top = theStack.pop();
 
                 String[] inputNew = tt.findProd(top, data.get(0).getProdMatch());
+                System.out.println("top: "+ top);
+                System.out.println("prodMatch: "+ data.get(0).getProdMatch());
 
 
 

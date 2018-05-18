@@ -1,7 +1,8 @@
 package Node;
 
+import Lexer.Token;
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class VariableNode extends TreeNode {
     public VariableNode(String token) {
@@ -16,8 +17,8 @@ public class VariableNode extends TreeNode {
         super(token, parent, isEnd);
     }
 
-    public void accept(Visitor visitor){
-        visitor.visit(this);
-    }
 
+   public VariableNode(String prod, Token token , TreeNode parent, Boolean isEnd) {
+       super(prod, token, parent, isEnd);
+   }
 }

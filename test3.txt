@@ -1,0 +1,6 @@
+class Auto {
+ int var1;
+ };
+
+program {
+ };

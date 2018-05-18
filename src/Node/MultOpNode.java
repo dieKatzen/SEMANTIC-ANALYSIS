@@ -1,7 +1,8 @@
 package Node;
 
+import Lexer.Token;
 import Main.TreeNode;
-import Main.Visitor;
+import Visitor.Visitor;
 
 public class MultOpNode extends TreeNode {
     public MultOpNode(String token) {
@@ -20,4 +21,11 @@ public class MultOpNode extends TreeNode {
         visitor.visit(this);
     }
 
+    public MultOpNode(String prod, String val, TreeNode parent, Boolean isEnd) {
+        super(prod, val, parent, isEnd);
+    }
+
+    public MultOpNode(String prod, Token token, TreeNode parent, Boolean isEnd) {
+        super(prod, token, parent, isEnd);
+    }
 }

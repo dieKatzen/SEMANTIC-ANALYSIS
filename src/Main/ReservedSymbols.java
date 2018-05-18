@@ -7,7 +7,7 @@ import java.util.Set;
 public class ReservedSymbols {
 
     public static Character [] singles = new Character[]{':',',','.',';','[',
-            ']' , '{' ,'}' ,'(',')','+' , '-' ,'*' ,'/'};
+            ']' , '{' ,'}' ,'(',')','+' , '-' ,'*' ,'/','='};
     public static String [] doubles = new String[]{ "==", "<>","<=",">=",
              "::"};
 

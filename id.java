@@ -1,0 +1,1 @@
+class id: id,id {int id; int id(int id[intNum]);}; class id : id {int id;}; program{id id; id = id[id][intNum];};
